@@ -1,0 +1,57 @@
+---
+import { Icon } from 'astro-icon/components'
+
+/**
+ * Contact Component
+ *
+ * @description A component that displays Contact from Astro Content Collections
+ */
+interface Props {
+  /**
+   * Additional classes to apply to the section
+   */
+  class?: string
+  /**
+   * The title for the section
+   * @default "Contacto"
+   */
+  title?: string
+}
+---
+
+<section id="contact" class="mt-24 mb-32">
+  <div class="container">
+    <div
+      class="flex flex-col items-center rounded-3xl border border-neutral-200 bg-neutral-100 px-6 py-16 text-center shadow-sm md:px-12 dark:border-neutral-800 dark:bg-neutral-800/40"
+    >
+      <h2 class="mb-6 text-4xl font-extrabold tracking-tight md:text-5xl">Sigamos en contacto</h2>
+
+      <p class="mb-10 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+        Siempre es un buen momento para hacer networking, compartir experiencias sobre el ecosistema Android o debatir
+        sobre tecnología. Puedes contactar conmigo a través de:
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-6">
+        <a
+          href="mailto:dev@jmingr.es"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white px-8 py-4 font-bold text-teal-700 !no-underline shadow-sm transition-transform hover:scale-105 dark:border-neutral-700 dark:bg-neutral-800 dark:text-teal-400"
+        >
+          <Icon name="lucide:mail" class="h-6 w-6" />
+          <span>Email</span>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/jose-miguel-mingorance/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white px-8 py-4 font-bold text-teal-700 !no-underline shadow-sm transition-transform hover:scale-105 dark:border-neutral-700 dark:bg-neutral-800 dark:text-teal-400"
+        >
+          <Icon name="lucide:linkedin" class="h-6 w-6" />
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

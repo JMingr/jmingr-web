@@ -19,18 +19,26 @@ interface Props {
 const { loading = 'eager' }: Props = Astro.props
 ---
 
-<Link href="/" class="flex items-center gap-2">
+<Link href="/" class="group flex items-center gap-2">
   {
     themeConfig.logo && (
-      <Image
-        src={themeConfig.logo}
-        alt=""
+      <div
+        class="h-11 w-11 bg-linear-to-br from-blue-500 to-emerald-500 transition-transform duration-300 group-hover:scale-110"
+        style={`
+          mask-image: url(${themeConfig.logo.src});
+          mask-size: contain;
+          mask-repeat: no-repeat;
+          mask-position: center;
+          -webkit-mask-image: url(${themeConfig.logo.src});
+          -webkit-mask-size: contain;
+          -webkit-mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+        `}
         aria-hidden="true"
-        width="47"
-        height="37"
-        loading={loading}
       />
     )
   }
-  <span class="text-sm font-bold sm:text-lg">{themeConfig.name}</span>
+  <span class="text-sm font-bold transition-colors group-hover:text-blue-500 sm:text-lg">
+    {themeConfig.name}
+  </span>
 </Link>

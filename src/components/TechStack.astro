@@ -1,0 +1,40 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const technologies = [
+  { name: 'Android', icon: 'simple-icons:android', color: 'text-[#3DDC84]' },
+  { name: 'Kotlin', icon: 'simple-icons:kotlin', color: 'text-[#7F52FF]' },
+  { name: 'Jetpack Compose', icon: 'simple-icons:jetpackcompose', color: 'text-[#4285F4]' },
+  { name: 'Firebase', icon: 'simple-icons:firebase', color: 'text-[#FFCA28]' },
+  { name: 'Gradle', icon: 'simple-icons:gradle', color: 'text-[#02303A] dark:text-[#00b2cc]' },
+
+  { name: 'Git', icon: 'simple-icons:git', color: 'text-[#F05032]' },
+  { name: 'Hilt / Koin', icon: 'lucide:syringe', color: 'text-emerald-500' },
+  { name: 'Docker', icon: 'simple-icons:docker', color: 'text-[#2496ED]' },
+  { name: 'Home Assistant', icon: 'simple-icons:homeassistant', color: 'text-[#41BDF5]' },
+  { name: 'Raspberry Pi', icon: 'simple-icons:raspberrypi', color: 'text-[#C51A4A]' },
+]
+---
+
+<section id="tech-stack" class="mt-24 mb-48">
+  <div class="container">
+    <h2 class="mb-12 text-center text-4xl font-extrabold tracking-tight md:text-left md:text-5xl">
+      Tech Stack & Herramientas
+    </h2>
+
+    <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">
+      {
+        technologies.map((tech) => (
+          <div class="group flex flex-col items-center justify-center">
+            <div class="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-transparent bg-neutral-100 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white hover:border-neutral-200 dark:bg-neutral-800/50 dark:group-hover:bg-neutral-800 dark:hover:border-neutral-700">
+              <Icon name={tech.icon} class={`h-10 w-10 ${tech.color}`} />
+            </div>
+            <span class="text-center text-sm font-bold text-neutral-600 transition-colors group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-100">
+              {tech.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

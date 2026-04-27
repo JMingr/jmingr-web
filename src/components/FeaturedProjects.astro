@@ -1,12 +1,6 @@
 ---
-import { Card, Heading, Link } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
-
-// Import images directly for optimization
-import projectImage1 from '@assets/images/projects/project-image-1.png'
-import projectImage2 from '@assets/images/projects/project-image-2.png'
-import projectImage3 from '@assets/images/projects/project-image-3.png'
+import { Icon } from 'astro-icon/components'
 
 /**
  * FeaturedProjects Component
@@ -20,52 +14,71 @@ interface Props {
   class?: string
   /**
    * The number of projects to display
-   * @default 3
+   * @default 4
    */
   limit?: number
   /**
    * The title for the section
-   * @default "Featured projects"
+   * @default "Últimos proyectos"
    */
   title?: string
 }
 
-const { class: className, limit = 3, title = 'Featured projects' } = Astro.props
+const { class: className, limit = 3, title = ['Últimos proyectos'] } = Astro.props
+
+const projectVisuals = [
+  {
+    icon: 'lucide:shopping-bag',
+    bg: 'bg-neutral-200 dark:bg-neutral-800/80',
+    text: 'text-neutral-900 dark:text-white',
+  },
+  { icon: 'lucide:landmark', bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-400' },
+  { icon: 'lucide:users', bg: 'bg-green-100 dark:bg-green-900/40', text: 'text-green-700 dark:text-green-400' },
+]
 
 // Get projects from content collection
 const projects = await getCollection('projects')
-const projectImages = [projectImage1, projectImage2, projectImage3]
 
 // Limit projects and add featured images
 const featuredProjects = projects.slice(0, limit).map((project, index) => ({
   ...project,
-  featuredImage: projectImages[index % projectImages.length],
+  visual: projectVisuals[index % projectVisuals.length],
 }))
 ---
 
-<section class:list={[className, 'my-64']}>
+<section id="projects" class:list={[className, 'scroll-mt-28', 'mt-48', 'mb-16']}>
   <div class="container">
-    <Heading level="h2" class="mb-6">{title}</Heading>
+    <h2 class="mb-12 text-4xl font-extrabold tracking-tight md:text-5xl">{title}</h2>
+
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
       {
         featuredProjects.map((project) => (
-          <Card
-            imageComponent={project.featuredImage}
-            url={'/portfolio/' + project.id}
-            headingLevel="h2"
-            title={project.data.title}
-            footer={'Author: ' + project.data.author}
-          >
-            {project.data.description}
-          </Card>
+          <div class="group flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-sm transition-all hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
+            <div class={`flex h-48 items-center justify-center ${project.visual.bg}`}>
+              <Icon
+                name={project.visual.icon}
+                class={`h-20 w-20 transition-transform duration-500 group-hover:scale-110 ${project.visual.text}`}
+              />
+            </div>
+
+            <div class="flex flex-1 flex-col p-8">
+              <h3 class="mb-4 text-2xl font-bold dark:text-white">{project.data.title}</h3>
+
+              <p class="mb-8 flex-1 text-neutral-600 dark:text-neutral-400">{project.data.description}</p>
+
+              <div class="mt-auto border-t border-neutral-200 pt-6 dark:border-neutral-800">
+                <div class="flex flex-wrap gap-2">
+                  {project.data.tags.map((tag: string) => (
+                    <span class="rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         ))
       }
-    </div>
-    <div class="mt-12">
-      <Link href="/portfolio/" isButton animateOnHover animationType="nudge">
-        View all projects
-        <Icon aria-hidden="true" name="lucide:arrow-right" size="1.5rem" />
-      </Link>
     </div>
   </div>
 </section>
