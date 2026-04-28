@@ -3,7 +3,7 @@ import logoImage from '@assets/img/logo.svg'
 
 export default defineThemeConfig({
   name: 'JMingr',
-  id: 'accessible-astro-starter',
+  id: 'jmingr-web',
   logo: logoImage,
   seo: {
     title: 'Jose Miguel Mingorance Rejón - Senior Android Developer',
