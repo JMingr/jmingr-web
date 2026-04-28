@@ -221,6 +221,19 @@ import Logo from './Logo.astro'
       }
     })
   })
+
+  // Close menu on tap
+  const mobileMenu = document.querySelector('.mobile-menu') as HTMLElement | null
+  const navLinks = mobileMenu?.querySelectorAll('a')
+  const toggleButton = document.querySelector('.responsive-toggle') as HTMLButtonElement | null
+
+  navLinks?.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (mobileMenu && window.getComputedStyle(mobileMenu).display !== 'none') {
+        toggleButton?.click()
+      }
+    })
+  })
 </script>
 
 <style lang="scss" is:global>

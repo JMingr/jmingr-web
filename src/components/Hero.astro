@@ -20,7 +20,7 @@ const { src = '/me-500.jpg' }: Props = Astro.props
 <section class="hero pt-48" id="home">
   <div class="container">
     <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-      <div class="flex flex-col items-center gap-8 md:items-start">
+      <div class="flex flex-col items-center gap-8 md:items-start order-2 lg:order-1">
         <div class="flex flex-col gap-1">
           <h1 class="text-3xl font-extrabold lg:text-5xl">
             <span class="text-gradient">Jose Miguel</span> Mingorance Rejón
@@ -59,7 +59,7 @@ const { src = '/me-500.jpg' }: Props = Astro.props
         </div>
       </div>
       <Image
-        class="border-primary/10 mx-auto hidden aspect-square rounded-full border-4 shadow-2xl lg:block"
+        class="border-primary/10 mx-auto aspect-square rounded-full border-4 shadow-2xl w-64 lg:w-full order-1 lg:order-2"
         src={src}
         alt="Jose Miguel"
         decoding="async"
