@@ -48,11 +48,21 @@ const {
   type = 'website',
   useTitleTemplate = true,
 } = Astro.props
-
 ---
 
 <html lang="en" dir="ltr">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVQXS6G4FB"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-RVQXS6G4FB')
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -87,12 +97,17 @@ const {
         basic: {
           title: title,
           type: type,
-          image: "",
+          image: 'https://jmingr.es/me-500.jpg',
           url: url,
         },
         optional: {
           description: description,
         },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        site: '@jmingr',
+        creator: '@jmingr',
       }}
       extend={{
         meta: [
